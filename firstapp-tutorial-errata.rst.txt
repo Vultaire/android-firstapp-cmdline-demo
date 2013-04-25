@@ -1,0 +1,130 @@
+===========================================================================
+ Errata in Android docs, regarding developing sample app via console tools
+===========================================================================
+
+Generally you can follow the Android docs when using the command line
+tools, but the docs are Eclipse-centric and occasionally they are
+either out of date or simply miss details needed for building using
+the command line.
+
+The errata is broken down into sections for each page of the tutorial
+on which I found issues.
+
+
+http://developer.android.com/training/basics/firstapp/running-app.html
+======================================================================
+
+- Use "ant debug install" to both build the debug config and install
+  it.  (Docs are out of date; you no longer need two commands, plus
+  the second command doesn't work as-is.)
+
+
+http://developer.android.com/training/basics/firstapp/building-ui.html
+======================================================================
+
+- Layout is at res/layout/main.xml, not res/layout/activity_main.xml.
+
+- In res/layout/strings.xml, you'll need to add extra strings to match
+  the example shown in the docs.
+
+- Again, use "ant debug install" to build and install.
+
+
+http://developer.android.com/training/basics/firstapp/starting-activity.html
+============================================================================
+
+- activity_main.xml means res/layout/main.xml.
+
+- The initial DisplayMessageActivity.java should look like::
+
+    package net.vultaire.example;
+    
+    import android.annotation.SuppressLint;
+    import android.app.Activity;
+    import android.os.Build;
+    import android.os.Bundle;
+    import android.support.v4.app.NavUtils;
+    import android.view.MenuItem;
+    
+    
+    public class DisplayMessageActivity extends Activity {
+    
+        @SuppressLint("NewApi")
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_display_message);
+    
+            // Make sure we're running on Honeycomb or higher to use ActionBar APIs
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                // Show the Up button in the action bar.
+                getActionBar().setDisplayHomeAsUpEnabled(true);
+            }
+        }
+    
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+  Note: Unfortunately the app will stop building for two reasons: the
+  lack of activity_display_message, and not being able to import
+  NavUtils.  The former goes away through the tutorial; the latter does not.
+
+- (MAYBE DROP) When adding the activity for DisplayMessageActivity,
+  you can simply specify "DisplayMessageActivity" as the android:name
+  rather than using the fully qualified version.  Note that this is
+  what was likely automatically done for your MainActivity.
+
+- Setting up the android support library:
+
+  Reference: http://developer.android.com/tools/extras/support-library.html#SettingUp
+
+  My step-by-step guide:
+
+  - "libs" directory should already exist.  Nothing needs to be done for this.
+  - From your SDK directory (typically "C:\Program Files
+    (x86)\Android\android-sdk" or "C:\Program
+    Files\Android\android-sdk"), find the library you need.  In my case, it's extras\android\support\v4\android-support-v4.jar.
+  - Copy the support library you just found into your project's "libs" directory.
+  - The docs say to add android-support-v4.jar to your project build
+    path.  "libs" should already be in your default build path, so you
+    shouldn't need to do anything if building via the command line.
+
+  Or, summarized into a single instruction:
+
+  **Copy the JAR file of the library in question into your project's
+  "libs" directory and it should "just work".**
+
+- If you follow the instructions for the rest of this page, ensuring
+  the examples match up, you should probably be good.  If you do have
+  build problems related to missing imports, here is what I ended up
+  with in the final version of my DisplayMessageActivity.java::
+
+    import android.annotation.SuppressLint;
+    import android.app.Activity;
+    //import android.os.Build;
+    import android.os.Bundle;
+    import android.support.v4.app.NavUtils;
+    import android.view.MenuItem;
+    import android.widget.TextView;
+    import android.content.Intent;
+
+
+----------------------------------------------------------------------
+
+In case of errors, please refer to my github project at <insert link
+here>.  The project was created using a semi-recent version of the
+command line tools, so try it out.  If things don't work, consider
+upgrading your tools, and if they still don't work, maybe my notes
+need an update.
+
+(My toolchain specifics: <sdk>/platform-tools/source.properties has
+Pkg.Revision 16.0.1 with a header specifying "#Sat Feb 16 21:40:57 PST
+2013".)
