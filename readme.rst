@@ -14,13 +14,26 @@ number of small and annoying differences, some out-of-date commands
 and some omitted directions, so I've tried to fill in the gaps
 somewhat.
 
+Project contents
+================
+
+- **firstapp-tutorial-errata.rst.txt:** Documentation of issues I have
+  found in the current Android tutorial.  For some people this may be
+  all you need.
+
+- **Everything else:** A working example project which should compile
+  and run, assuming a correctly configured build environment.
+
+Using the example code
+======================
+
 Prerequisites
-=============
+-------------
 
 These instructions assume Windows; I haven't yet tested this on Linux.
 
 Android SDK
------------
+~~~~~~~~~~~
 
 Get it from http://developer.android.com/sdk/index.html.  Select "Use
 an existing IDE" since we don't need Eclipse, and click the download
@@ -33,13 +46,13 @@ Additionally, install the "Android SDK Platform-tools" package if it
 isn't automatically selected.
 
 Apache Ant
-----------
+~~~~~~~~~~
 
 Get it from http://ant.apache.org/bindownload.cgi.  Pull the current
 release zip file or tarball and extract it somewhere on your system.
 
 Set up a phone or emulator
---------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This is actually covered in the Android tutorial, so here are links to
 the relevant sections:
@@ -48,7 +61,7 @@ the relevant sections:
 - `Run on the Emulator <http://developer.android.com/training/basics/firstapp/running-app.html#Emulator>`_
 
 Windows-specific: set up the build environment
-----------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 At a minimum, you need to set up your PATH environment variable
 appropriately for your system, based upon where the Android SDK and
@@ -61,7 +74,7 @@ PATH variable; I just tend to like this type of self-contained
 environment.
 
 Building and installing the app
-===============================
+-------------------------------
 
 Assuming you have your build environment set up per the prerequisites,
 you should be able to just run::
@@ -71,7 +84,7 @@ you should be able to just run::
 This will build and install the app onto your emulator or phone.
 
 Errata in this project
-======================
+----------------------
 
 - Rather than com.example.myfirstapp, my package name is
   net.vultaire.example.  This manifests in a few string literals and
