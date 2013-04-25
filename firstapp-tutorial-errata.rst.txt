@@ -119,11 +119,11 @@ http://developer.android.com/training/basics/firstapp/starting-activity.html
 
 ----------------------------------------------------------------------
 
-In case of errors, please refer to my github project at <insert link
-here>.  The project was created using a semi-recent version of the
-command line tools, so try it out.  If things don't work, consider
-upgrading your tools, and if they still don't work, maybe my notes
-need an update.
+In case of errors, please refer to my github project at
+https://github.com/Vultaire/android-firstapp-cmdline-demo.  The
+project was created using a semi-recent version of the command line
+tools, so try it out.  If things don't work, consider upgrading your
+tools, and if they still don't work, maybe my notes need an update.
 
 (My toolchain specifics: <sdk>/platform-tools/source.properties has
 Pkg.Revision 16.0.1 with a header specifying "#Sat Feb 16 21:40:57 PST
