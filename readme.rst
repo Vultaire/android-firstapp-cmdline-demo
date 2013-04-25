@@ -6,11 +6,13 @@ This project was created because I had trouble using the Android
 tutorial to successfully build an Android app using the command line
 tools.
 
-The tutorial works quite well for Eclipse users, however I prefer to
-use Emacs, so I tried using their instructions for command-line users.
-There were a number of small and annoying differences, some
-out-of-date commands and some omitted directions, so I've tried to
-fill in the gaps somewhat.
+The `tutorial
+<http://developer.android.com/training/basics/firstapp/index.html>`_
+works quite well for Eclipse users, however I prefer to use Emacs, so
+I tried using their instructions for command-line users.  There were a
+number of small and annoying differences, some out-of-date commands
+and some omitted directions, so I've tried to fill in the gaps
+somewhat.
 
 Prerequisites
 =============
